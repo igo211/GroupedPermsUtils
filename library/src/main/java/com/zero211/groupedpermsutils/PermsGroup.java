@@ -11,15 +11,17 @@ import android.util.Log;
  * Created by malloys on 8/8/2017.
  */
 
+@SuppressWarnings("unused")
 public class PermsGroup
 {
     private static final String LOGTAG = PermsGroup.class.getSimpleName();
 
-    private String name;
+    private final String name;
     private int requestCode;
-    private String explaination;
+    private String explanation;
     private String[] permissions;
 
+    @SuppressWarnings("unused")
     public static PermsGroup getByRequestCode(PermsGroup[] permsGroups, int requestCode)
     {
         for (PermsGroup tPermGroup : permsGroups)
@@ -32,31 +34,34 @@ public class PermsGroup
 
         return null;
     }
-
-    public PermsGroup(String name, String explaination, int requestCode, String... permissions)
+    @SuppressWarnings("unused")
+    public PermsGroup(String name, String explanation, int requestCode, String... permissions)
     {
         this.name = name;
-        this.explaination = explaination;
+        this.explanation = explanation;
         this.requestCode = requestCode;
         this.permissions = permissions;
     }
 
-
+    @SuppressWarnings("unused")
     public String getName()
     {
         return name;
     }
 
-    public String getExplaination()
+    @SuppressWarnings("unused")
+    public String getExplanation()
     {
-        return explaination;
+        return explanation;
     }
 
+    @SuppressWarnings("unused")
     public int getRequestCode()
     {
         return requestCode;
     }
 
+    @SuppressWarnings("unused")
     public String[] getPermissions()
     {
         return permissions;
@@ -93,12 +98,14 @@ public class PermsGroup
         return allGood;
     }
 
+    @SuppressWarnings("unused")
     public boolean canDoActionRequiringPerms(Activity activity)
     {
         return this.canDoActionRequiringPerms(activity, true);
     }
 
-    private boolean canDoActionRequiringPerms(Activity activity, boolean requestPerms)
+    @SuppressWarnings({"WeakerAccess"})
+    public boolean canDoActionRequiringPerms(Activity activity, boolean requestPerms)
     {
         Log.i(LOGTAG, "Checking permissions: " + this.getPermissionsAsString());
 
@@ -147,8 +154,8 @@ public class PermsGroup
             Log.i(LOGTAG, "Displaying contacts permission rationale to provide additional context.");
 
             AlertDialog alertDialog = new AlertDialog.Builder(activity).create();
-            alertDialog.setTitle("Permission explaination");
-            alertDialog.setMessage("The following permissions are required to " + PermsGroup.this.explaination + "... ");
+            alertDialog.setTitle("Permission explanation");
+            alertDialog.setMessage("The following permissions are required to " + PermsGroup.this.explanation + "... ");
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                     new DialogInterface.OnClickListener()
                     {
